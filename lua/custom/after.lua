@@ -3,10 +3,6 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-  set hlsearch
-]])
-
-vim.cmd([[
   " Tell Vim which characters to show for expanded TABs,
   " trailing whitespace, and end-of-lines. VERY useful!
   set listchars=tab:>\·,trail:\ ,extends:>,precedes:<,nbsp:+

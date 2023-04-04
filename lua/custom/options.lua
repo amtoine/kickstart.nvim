@@ -13,3 +13,5 @@ vim.opt.tabstop = 4
 
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+
+vim.opt.hlsearch = true
