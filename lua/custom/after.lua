@@ -14,3 +14,5 @@ vim.cmd([[
   highlight ExtraWhitespace ctermbg=darkred guibg=darkred
   match ExtraWhitespace /\s\+$\|\t/
 ]])
+
+vim.cmd([[colorscheme tokyonight-night]])
