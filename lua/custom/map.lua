@@ -1,9 +1,9 @@
-vim.keymap.set('n', '<leader>so', ':source ~/.config/nvim/init.lua<CR>', { silent = true, desc = "[so]urce the config" })
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>', { silent = true, desc = "Remove the search [h]ighlight" })
-vim.keymap.set('n', '<leader>t', ':terminal nu<CR>', { silent = true, desc = "Open a [t]erminal with nushell" })
+vim.keymap.set("n", "<leader>so", ":source ~/.config/nvim/init.lua<CR>", { silent = true, desc = "[so]urce the config" })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { silent = true, desc = "Remove the search [h]ighlight" })
+vim.keymap.set("n", "<leader>t", ":terminal nu<CR>", { silent = true, desc = "Open a [t]erminal with nushell" })
 
-vim.keymap.set('n', '<leader>pf', vim.cmd.Ex, { silent = true, desc = 'O[p]en the [f]ile explorer' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { silent = true, desc = 'Search for [g]it [f]files' })
+vim.keymap.set("n", "<leader>pf", vim.cmd.Ex, { silent = true, desc = "O[p]en the [f]ile explorer" })
+vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { silent = true, desc = "Search for [g]it [f]files" })
 
 -- drag lines up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "drag visual lines down" })
@@ -11,8 +11,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "drag visual lines up" })
 
 -- always stay centered
 vim.keymap.set("n", "J", "mzJ`z", { desc = "keep the cursor to the left when merging lines" })
-vim.keymap.set('n', '<c-d>', '<c-d>zz', { silent = true, desc = "stay vertically centered when scrolling page down" })
-vim.keymap.set('n', '<c-u>', '<c-u>zz', { silent = true, desc = "stay vertically centered when scrolling pages up" })
+vim.keymap.set("n", "<c-d>", "<c-d>zz", { silent = true, desc = "stay vertically centered when scrolling page down" })
+vim.keymap.set("n", "<c-u>", "<c-u>zz", { silent = true, desc = "stay vertically centered when scrolling pages up" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "stay vertically centered when going to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "stay vertically centered when going to previous match" })
 
