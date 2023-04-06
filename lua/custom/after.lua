@@ -3,6 +3,10 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
+  colorscheme tokyonight-night
+]])
+
+vim.cmd([[
   " Tell Vim which characters to show for expanded TABs,
   " trailing whitespace, and end-of-lines. VERY useful!
   set listchars=tab:>\·,trail:\ ,extends:>,precedes:<,nbsp:+
@@ -14,5 +18,3 @@ vim.cmd([[
   highlight ExtraWhitespace ctermbg=darkred guibg=darkred
   match ExtraWhitespace /\s\+$\|\t/
 ]])
-
-vim.cmd([[colorscheme tokyonight-night]])
