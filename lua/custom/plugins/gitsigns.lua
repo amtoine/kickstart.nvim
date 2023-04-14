@@ -16,12 +16,12 @@ return {
     vim.keymap.set("n", "<leader>ghp", function ()
       gs.prev_hunk()
       gs.preview_hunk_inline()
-    end)
+    end, { silent = true, desc = "[G]itsigns: go to [p]revious [h]unk" })
     vim.keymap.set("n", "<leader>ghn", function ()
       gs.next_hunk()
       gs.preview_hunk_inline()
-    end)
-    vim.keymap.set("n", "<leader>ghs", gs.preview_hunk_inline)
-    vim.keymap.set("n", "<leader>ghr", gs.reset_hunk)
+    end, { silent = true, desc = "[G]itsigns: go to [n]ext [h]unk" })
+    vim.keymap.set("n", "<leader>ghs", gs.preview_hunk_inline, { silent = true, desc = "[G]itsigns: [s]how [h]unk at cursor" })
+    vim.keymap.set("n", "<leader>ghr", gs.reset_hunk, { silent = true, desc = "[G]itsigns: [r]eset [h]unk at cursor" })
   end
 }
