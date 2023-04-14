@@ -62,3 +62,8 @@ vim.keymap.set("n", "<A-l>", "<C-w>l")
 vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { silent = true, desc = "Open a [t]erminal" })
 vim.keymap.set("n", "<leader>th", ":split +terminal<CR>", { silent = true, desc = "Open a [t]erminal in a [h]orizontal split" })
 vim.keymap.set("n", "<leader>tv", ":vsplit +terminal<CR>", { silent = true, desc = "Open a [t]erminal in a [v]ertical split" })
+
+-- window operations
+vim.keymap.set("n", "<leader>wm", "<C-w>_<C-w>|", { silent = true, desc = "[M]aximize the current [w]indow" })
+vim.keymap.set("n", "<leader>wc", "<C-w>o", { silent = true, desc = "[C]lose all but the focused [w]indow" })
+vim.keymap.set("n", "<leader>we", "<C-w>=", { silent = true, desc = "Make all [w]indows [e]qual" })
