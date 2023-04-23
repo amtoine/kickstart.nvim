@@ -20,3 +20,9 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.shell = "nu"
+
+vim.filetype.add({
+    extension = {
+        nu = "nu",
+    },
+})
