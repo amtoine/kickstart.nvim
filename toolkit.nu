@@ -18,3 +18,11 @@ export def plugins [] {
     | path parse
     | get stem
 }
+
+export def import-git-projects [] {
+    ghq list
+    | lines
+    | each {|it| ghq root | str trim | path join $it}
+    | to text
+    | save -f ~/.local/share/nvim/project_nvim/project_history
+}
