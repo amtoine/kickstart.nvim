@@ -28,6 +28,9 @@ def pretty-cmd [] {
 export def import-git-projects [] {
     let projects = ($env.HOME | path join ".local/share/nvim/project_nvim/project_history")
 
+    mkdir ($projects | path dirname)
+    touch $projects
+
     let before = ($projects | open | lines | length)
 
     $projects | open | lines | append (
