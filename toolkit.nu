@@ -19,10 +19,27 @@ export def plugins [] {
     | get stem
 }
 
+def pretty-cmd [] {
+    let cmd = $in
+    $"(ansi -e {fg: default attr: di})($cmd)(ansi reset)"
+
+}
+
 export def import-git-projects [] {
-    ghq list
-    | lines
-    | each {|it| ghq root | str trim | path join $it}
-    | to text
-    | save -f ~/.local/share/nvim/project_nvim/project_history
+    let projects = ($env.HOME | path join ".local/share/nvim/project_nvim/project_history")
+
+    let before = ($projects | open | lines | length)
+
+    $projects | open | lines | append (
+        ghq list
+        | lines
+        | each {|it|
+            print $"adding (ansi yellow)($it)(ansi reset) to the projects..."
+            ghq root | str trim | path join $it
+        }
+    ) | uniq
+    | save -f $projects
+
+    print $"all ('git' | pretty-cmd) projects (ansi green_bold)successfully added(ansi reset) to the ('projects.nvim' | pretty-cmd) list!"
+    print $"from ($before) to ($projects | open | lines | length) projects."
 }
