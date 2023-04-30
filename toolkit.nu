@@ -28,6 +28,11 @@ export def setup [] {
     ln -s (pwd) $NVIM_CONFIG
 }
 
+export def update [] {
+    install-queries
+    nvim -c ":TSUpdate"
+}
+
 # list the installed plugins
 export def plugins [] {
     ls lua/custom/plugins/*lua
