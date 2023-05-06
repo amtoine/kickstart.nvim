@@ -24,6 +24,7 @@ vim.opt.shell = "nu"
 vim.filetype.add({
     extension = {
         nu = "nu",
+        nush = "nu",
     },
     pattern = {
         [".*"] = {
