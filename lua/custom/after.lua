@@ -15,13 +15,12 @@ function M.nvim_create_augroups(definitions)
     end
 end
 
-vim.cmd([[
-  autocmd TermOpen * startinsert
-]])
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    command = "startinsert",
+})
 
-vim.cmd([[
-  colorscheme tokyonight-night
-]])
+vim.cmd.colorscheme "tokyonight-night"
 
 vim.cmd([[
   " Tell Vim which characters to show for expanded TABs,
