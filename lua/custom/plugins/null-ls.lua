@@ -3,7 +3,13 @@ return {
   config = function ()
     require("null-ls").setup {
       sources = {
-        require("nu-ls"),
+        require("nu-ls").setup({
+          methods = {
+            "diagnostics_on_open",
+            "diagnostics_on_save",
+            "hover",
+          },
+        })
       },
     }
   end
