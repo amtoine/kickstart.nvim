@@ -29,11 +29,29 @@ vim.cmd([[
 
   " Show problematic characters.
   set list
-
-  " Also highlight all tabs and trailing whitespace characters.
-  highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-  match ExtraWhitespace /\s\+$\|\t/
 ]])
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+    pattern = "*",
+    callback = function ()
+        local color = "darkred"
+
+        vim.cmd {
+            cmd = "highlight",
+            args = {
+                "ExtraWhitespace" ,
+                string.format("ctermbg=%s", color),
+                string.format("guibg=%s", color)
+            },
+            bang = false,
+        }
+        vim.cmd {
+            cmd = "match",
+            args = {"ExtraWhitespace" , "/\\s\\+$/"},
+            bang = false,
+        }
+    end
+})
 
 M.nvim_create_augroups{
     open_folds = {
