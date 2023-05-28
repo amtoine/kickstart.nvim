@@ -25,6 +25,7 @@ vim.filetype.add({
     extension = {
         nu = "nu",
         nush = "nu",
+        nuon = "nu",
     },
     pattern = {
         [".*"] = {
