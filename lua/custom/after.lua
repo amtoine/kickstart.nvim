@@ -32,6 +32,13 @@ vim.cmd([[
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
     pattern = "*",
     callback = function ()
+        if vim.bo.filetype == "" or
+           vim.bo.filetype == "aerial" or
+           vim.bo.filetype == "help"
+        then
+            return nil
+        end
+
         local color = "darkred"
 
         vim.cmd {
