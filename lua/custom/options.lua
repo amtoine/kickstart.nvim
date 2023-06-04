@@ -3,6 +3,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
+vim.opt.textwidth = 80
+vim.opt.colorcolumn = "+1,+2"
+
 vim.opt.relativenumber = true
 
 vim.opt.wrap = false
