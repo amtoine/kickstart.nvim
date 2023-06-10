@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
         }
         vim.cmd {
             cmd = "match",
-            args = {"ExtraWhitespace" , "/\\s\\+$/"},
+            args = {"ExtraWhitespace" , "/\\s\\+$\\|\\t/"},
             bang = false,
         }
     end
