@@ -69,3 +69,19 @@ export def import-git-projects [] {
     print $"all ('git' | pretty-cmd) projects (ansi green_bold)successfully added(ansi reset) to the ('projects.nvim' | pretty-cmd) list!"
     print $"from ($before) to ($projects | open | lines | length) projects."
 }
+
+export def "install runtime" [
+    runtime: string
+    user: string
+    group: string
+] {
+    if $env.VIMRUNTIME? == null {
+        error make --unspanned { msg: "Please set VIMRUNTIME before running this command." }
+    }
+
+    sudo cp -r $runtime $env.VIMRUNTIME
+    sudo chown -R $"($user):($group)" $env.VIMRUNTIME
+
+    let git_syntax_file = "https://raw.githubusercontent.com/amtoine/neovim/feature/branch-and-HEAD-colors-in-git-syntax/runtime/syntax/git.vim"
+    http get $git_syntax_file | save --force ($env.VIMRUNTIME | path join "syntax" "git.vim")
+}
