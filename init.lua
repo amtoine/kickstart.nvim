@@ -286,6 +286,9 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<Esc>'] = require('telescope.actions').close,
+        ['<S-l>'] = require('telescope.actions').select_vertical,
+        ['<S-j>'] = require('telescope.actions').select_horizontal,
       },
     },
   },
