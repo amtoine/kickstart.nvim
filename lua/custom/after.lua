@@ -34,7 +34,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
     callback = function ()
         if vim.bo.filetype == "" or
            vim.bo.filetype == "aerial" or
-           vim.bo.filetype == "help"
+           vim.bo.filetype == "help" or
+           vim.bo.filetype == "neo-tree"
         then
             return nil
         end
