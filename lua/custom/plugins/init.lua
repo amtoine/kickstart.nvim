@@ -431,4 +431,6 @@ return {
       require("zen-mode").setup({})
     end
   },
+
+  { "lervag/vimtex" },
 }
