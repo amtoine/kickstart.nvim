@@ -44,20 +44,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 -- a better terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "escape to normal mode in a terminal"})
 
--- move between any window with `alt` + motion keys
-vim.keymap.set("t", "<A-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("t", "<A-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("t", "<A-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("t", "<A-l>", "<C-\\><C-N><C-w>l")
-vim.keymap.set("i", "<A-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("i", "<A-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("i", "<A-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("i", "<A-l>", "<C-\\><C-N><C-w>l")
-vim.keymap.set("n", "<A-h>", "<C-w>h")
-vim.keymap.set("n", "<A-j>", "<C-w>j")
-vim.keymap.set("n", "<A-k>", "<C-w>k")
-vim.keymap.set("n", "<A-l>", "<C-w>l")
-
 -- open a terminal
 vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { silent = true, desc = "Open a [t]erminal" })
 vim.keymap.set("n", "<leader>th", ":split +terminal<CR>", { silent = true, desc = "Open a [t]erminal in a [h]orizontal split" })
@@ -67,3 +53,11 @@ vim.keymap.set("n", "<leader>tv", ":vsplit +terminal<CR>", { silent = true, desc
 vim.keymap.set("n", "<leader>wm", "<C-w>_<C-w>|", { silent = true, desc = "[M]aximize the current [w]indow" })
 vim.keymap.set("n", "<leader>wc", "<C-w>o", { silent = true, desc = "[C]lose all but the focused [w]indow" })
 vim.keymap.set("n", "<leader>we", "<C-w>=", { silent = true, desc = "Make all [w]indows [e]qual" })
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { silent = true, desc = "Move focus one [w]indow to the left" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { silent = true, desc = "Move focus one [w]indow down" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { silent = true, desc = "Move focus one [w]indow up" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { silent = true, desc = "Move focus one [w]indow to the right" })
+vim.keymap.set("n", "<leader>wH", "<C-w>H", { silent = true, desc = "Move [w]indow to the left" })
+vim.keymap.set("n", "<leader>wJ", "<C-w>J", { silent = true, desc = "Move [w]indow down" })
+vim.keymap.set("n", "<leader>wK", "<C-w>K", { silent = true, desc = "Move [w]indow up" })
+vim.keymap.set("n", "<leader>wL", "<C-w>L", { silent = true, desc = "Move [w]indow to the right" })
