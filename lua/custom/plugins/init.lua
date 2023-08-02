@@ -433,4 +433,8 @@ return {
   },
 
   { "lervag/vimtex" },
+
+  { "Soares/base16.nvim" },
+
+  { 'echasnovski/mini.nvim', version = '*' },
 }
