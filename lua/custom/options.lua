@@ -3,8 +3,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
-local textwidth = 80
-vim.opt.colorcolumn = (textwidth + 1) .. "," .. (textwidth + 2)
+vim.opt.colorcolumn = "81,101"
 
 vim.opt.relativenumber = true
 
