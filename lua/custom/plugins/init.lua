@@ -437,4 +437,6 @@ return {
   { "Soares/base16.nvim" },
 
   { 'echasnovski/mini.nvim', version = '*' },
+
+  { "rbong/vim-flog" },
 }
