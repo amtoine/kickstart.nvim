@@ -22,13 +22,6 @@ return {
   },
 
   {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup {}
-    end,
-  },
-
-  {
     "nvim-telescope/telescope-bibtex.nvim",
     requires = {
       { 'nvim-telescope/telescope.nvim' },
@@ -42,8 +35,6 @@ return {
         { silent = true, desc = "propose [b]i[bt]ex references for copy" })
     end,
   },
-
-  { "eandrju/cellular-automaton.nvim" },
 
   {
     "laytan/cloak.nvim",
@@ -141,48 +132,10 @@ return {
     end
   },
 
-  { "Mofiqul/dracula.nvim" },
-
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    version = "*",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require("neo-tree").setup {}
-    end,
-  },
-
   {
     "tpope/vim-fugitive",
     config = function()
       vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-    end
-  },
-
-  {
-    "f-person/git-blame.nvim",
-    config = function()
-      vim.g.gitblame_display_virtual_text = 0
-
-      vim.keymap.set("n", "<leader>gbt", ":GitBlameToggle<CR>")
-      vim.keymap.set("n", "<leader>gbc", ":GitBlameCopySHA<CR>")
-    end
-  },
-
-  {
-    "ThePrimeagen/git-worktree.nvim",
-    config = function()
-      require("git-worktree").setup {}
-
-      local telescope = require("telescope")
-      telescope.load_extension("git_worktree")
-
-      vim.keymap.set("n", "<leader>sgw", function() telescope.extensions.git_worktree.git_worktrees {} end,
-        { silent = true, desc = "[s]witch between [g]it [w]orktrees" })
     end
   },
 
@@ -250,10 +203,6 @@ return {
   },
 
   {
-    "imsnif/kdl.vim"
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "wthollingsworth/pomodoro.nvim"
@@ -290,58 +239,7 @@ return {
     end
   },
 
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("notify").setup({
-        background_colour = "#000000",
-      })
-    end
-  },
-
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({})
-    end
-  },
-
   { "nvim-treesitter/playground" },
-
-  {
-    "wthollingsworth/pomodoro.nvim",
-    requires = "MunifTanjim/nui.nvim",
-    config = function()
-      require("pomodoro").setup({
-        time_work = 25,
-        time_break_short = 5,
-        time_break_long = 20,
-        timers_to_long_break = 4
-      })
-    end
-  },
-
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup {
-      }
-
-      local telescope = require("telescope")
-
-      telescope.load_extension("projects")
-
-      vim.keymap.set("n", "<leader>pp", function() telescope.extensions.projects.projects {} end,
-        { silent = true, desc = "[p]rojects: open a [p]roject" })
-    end
-  },
-
-  {
-    "rose-pine/neovim",
-    as = "rose-pine",
-  },
 
   {
     "justinmk/vim-sneak",
@@ -351,10 +249,6 @@ return {
       vim.keymap.set("n", "t", "<Plug>Sneak_t", { desc = "snipe the feet of a character" })
       vim.keymap.set("n", "T", "<Plug>Sneak_T", { desc = "snipe the feet of a character behind" })
     end
-  },
-
-  {
-    "folke/tokyonight.nvim"
   },
 
   {
@@ -368,8 +262,6 @@ return {
       vim.keymap.set("n", "<leader>tc", ":TodoTelescope<CR>")
     end
   },
-
-  { 'xiyaowong/nvim-transparent' },
 
   {
     "folke/trouble.nvim",
@@ -409,32 +301,7 @@ return {
     end
   },
 
-  { "tpope/vim-surround" },
-
-  { "mg979/vim-visual-multi" },
-
-  {
-    'Lilja/zellij.nvim',
-    config = function()
-      require('zellij').setup({
-        path = "zellij",
-        replaceVimWindowNavigationKeybinds = true,
-        vimTmuxNavigatorKeybinds = false,
-        debug = false,
-      })
-    end
-  },
-
-  {
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({})
-    end
-  },
-
   { "lervag/vimtex" },
-
-  { "Soares/base16.nvim" },
 
   { 'echasnovski/mini.nvim', version = '*' },
 
