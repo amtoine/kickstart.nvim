@@ -189,9 +189,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "wthollingsworth/pomodoro.nvim"
-    },
+    dependencies = {},
     config = function()
       require("lualine").setup({
         options = {
@@ -199,7 +197,7 @@ return {
           component_separators = { left = ">", right = "<" },
         },
         sections = {
-          lualine_c = { "filename", require("pomodoro").statusline },
+          lualine_c = { "filename" },
         },
       })
     end
