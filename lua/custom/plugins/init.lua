@@ -3,42 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require('aerial').setup({
-        on_attach = function(bufnr)
-          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
-        end
-      })
-      vim.keymap.set('n', '<leader>at', ':AerialToggle!<CR>')
-    end
-  },
-
-  {
-    "laytan/cloak.nvim",
-    config = function()
-      require('cloak').setup({
-        enabled = true,
-        cloak_character = '*',
-        highlight_group = 'Comment',
-        cloak_length = nil,
-        patterns = {
-          {
-            file_pattern = '.env*',
-            cloak_pattern = { '=.+', ':.+', '-.+' }
-          },
-        },
-      })
-    end
-  },
-
+  -- language support
   {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
@@ -118,42 +83,6 @@ return {
   },
 
   {
-    "tpope/vim-fugitive",
-    config = function()
-      vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-    end
-  },
-
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      local gs = require('gitsigns')
-
-      gs.setup {
-        signs = {
-          add = { text = '+' },
-          change = { text = '~' },
-          delete = { text = '_' },
-          topdelete = { text = '‾' },
-          changedelete = { text = '~' },
-        }
-      }
-
-      vim.keymap.set("n", "<leader>ghp", function()
-        gs.prev_hunk()
-        gs.preview_hunk_inline()
-      end, { silent = true, desc = "[G]itsigns: go to [p]revious [h]unk" })
-      vim.keymap.set("n", "<leader>ghn", function()
-        gs.next_hunk()
-        gs.preview_hunk_inline()
-      end, { silent = true, desc = "[G]itsigns: go to [n]ext [h]unk" })
-      vim.keymap.set("n", "<leader>ghs", gs.preview_hunk_inline,
-        { silent = true, desc = "[G]itsigns: [s]how [h]unk at cursor" })
-      vim.keymap.set("n", "<leader>ghr", gs.reset_hunk, { silent = true, desc = "[G]itsigns: [r]eset [h]unk at cursor" })
-    end
-  },
-
-  {
     'rmagatti/goto-preview',
     config = function()
       local goto_preview = require('goto-preview')
@@ -164,85 +93,6 @@ return {
       vim.keymap.set("n", "gpi", function() goto_preview.goto_preview_implementation() end, { silent = true, desc = "" })
       vim.keymap.set("n", "gP", function() goto_preview.close_all_win() end, { silent = true, desc = "" })
       vim.keymap.set("n", "gpr", function() goto_preview.goto_preview_references() end, { silent = true, desc = "" })
-    end
-  },
-
-  {
-    "theprimeagen/harpoon",
-    config = function()
-      local mark = require("harpoon.mark")
-      local ui = require("harpoon.ui")
-
-      vim.keymap.set("n", "<leader>ha", mark.add_file, { silent = true, desc = "[h]arpoon: [a]dd a file to the menu" })
-      vim.keymap.set("n", "<leader>he", ui.toggle_quick_menu,
-        { silent = true, desc = "[h]arpoon: toggle menu [e]ntries" })
-      vim.keymap.set("n", "<leader>hh", function() ui.nav_file(1) end,
-        { silent = true, desc = "[h]arpoon: go to first item (left [h])" })
-      vim.keymap.set("n", "<leader>hj", function() ui.nav_file(2) end,
-        { silent = true, desc = "[h]arpoon: go to second item (down [j])" })
-      vim.keymap.set("n", "<leader>hk", function() ui.nav_file(3) end,
-        { silent = true, desc = "[h]arpoon: go to third item (up [k])" })
-      vim.keymap.set("n", "<leader>hl", function() ui.nav_file(4) end,
-        { silent = true, desc = "[h]arpoon: go to fourth item (right [l])" })
-    end
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {},
-    config = function()
-      require("lualine").setup({
-        options = {
-          theme = "auto",
-          component_separators = { left = ">", right = "<" },
-        },
-        sections = {
-          lualine_c = { "filename" },
-        },
-      })
-    end
-  },
-
-  { "zioroboco/nu-ls.nvim" },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("null-ls").setup {
-        sources = {
-          require("nu-ls").setup({
-            methods = {
-              "diagnostics_on_open",
-              "diagnostics_on_save",
-              "hover",
-            },
-          })
-        },
-      }
-    end
-  },
-
-  { "nvim-treesitter/playground" },
-
-  {
-    "justinmk/vim-sneak",
-    config = function()
-      vim.keymap.set("n", "f", "<Plug>Sneak_f", { desc = "snipe a character" })
-      vim.keymap.set("n", "F", "<Plug>Sneak_F", { desc = "snipe a character behind" })
-      vim.keymap.set("n", "t", "<Plug>Sneak_t", { desc = "snipe the feet of a character" })
-      vim.keymap.set("n", "T", "<Plug>Sneak_T", { desc = "snipe the feet of a character behind" })
-    end
-  },
-
-  {
-    "folke/todo-comments.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    },
-    config = function()
-      require("todo-comments").setup {}
-
-      vim.keymap.set("n", "<leader>tc", ":TodoTelescope<CR>")
     end
   },
 
@@ -278,13 +128,6 @@ return {
   },
 
   {
-    "mbbill/undotree",
-    config = function()
-      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-    end
-  },
-
-  {
     "nvim-telescope/telescope-bibtex.nvim",
     requires = {
       { 'nvim-telescope/telescope.nvim' },
@@ -301,7 +144,168 @@ return {
 
   { "lervag/vimtex" },
 
-  { 'echasnovski/mini.nvim', version = '*' },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+      require('aerial').setup({
+        on_attach = function(bufnr)
+          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+        end
+      })
+      vim.keymap.set('n', '<leader>at', ':AerialToggle!<CR>')
+    end
+  },
+
+  { "zioroboco/nu-ls.nvim" },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("null-ls").setup {
+        sources = {
+          require("nu-ls").setup({
+            methods = {
+              "diagnostics_on_open",
+              "diagnostics_on_save",
+              "hover",
+            },
+          })
+        },
+      }
+    end
+  },
+
+  { "nvim-treesitter/playground" },
+
+  -- Git
+  {
+    "tpope/vim-fugitive",
+    config = function()
+      vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+    end
+  },
+
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      local gs = require('gitsigns')
+
+      gs.setup {
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+        }
+      }
+
+      vim.keymap.set("n", "<leader>ghp", function()
+        gs.prev_hunk()
+        gs.preview_hunk_inline()
+      end, { silent = true, desc = "[G]itsigns: go to [p]revious [h]unk" })
+      vim.keymap.set("n", "<leader>ghn", function()
+        gs.next_hunk()
+        gs.preview_hunk_inline()
+      end, { silent = true, desc = "[G]itsigns: go to [n]ext [h]unk" })
+      vim.keymap.set("n", "<leader>ghs", gs.preview_hunk_inline,
+        { silent = true, desc = "[G]itsigns: [s]how [h]unk at cursor" })
+      vim.keymap.set("n", "<leader>ghr", gs.reset_hunk, { silent = true, desc = "[G]itsigns: [r]eset [h]unk at cursor" })
+    end
+  },
 
   { "rbong/vim-flog" },
+
+  -- motion in space and time
+  {
+    "justinmk/vim-sneak",
+    config = function()
+      vim.keymap.set("n", "f", "<Plug>Sneak_f", { desc = "snipe a character" })
+      vim.keymap.set("n", "F", "<Plug>Sneak_F", { desc = "snipe a character behind" })
+      vim.keymap.set("n", "t", "<Plug>Sneak_t", { desc = "snipe the feet of a character" })
+      vim.keymap.set("n", "T", "<Plug>Sneak_T", { desc = "snipe the feet of a character behind" })
+    end
+  },
+
+  {
+    "theprimeagen/harpoon",
+    config = function()
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      vim.keymap.set("n", "<leader>ha", mark.add_file, { silent = true, desc = "[h]arpoon: [a]dd a file to the menu" })
+      vim.keymap.set("n", "<leader>he", ui.toggle_quick_menu,
+        { silent = true, desc = "[h]arpoon: toggle menu [e]ntries" })
+      vim.keymap.set("n", "<leader>hh", function() ui.nav_file(1) end,
+        { silent = true, desc = "[h]arpoon: go to first item (left [h])" })
+      vim.keymap.set("n", "<leader>hj", function() ui.nav_file(2) end,
+        { silent = true, desc = "[h]arpoon: go to second item (down [j])" })
+      vim.keymap.set("n", "<leader>hk", function() ui.nav_file(3) end,
+        { silent = true, desc = "[h]arpoon: go to third item (up [k])" })
+      vim.keymap.set("n", "<leader>hl", function() ui.nav_file(4) end,
+        { silent = true, desc = "[h]arpoon: go to fourth item (right [l])" })
+    end
+  },
+
+  {
+    "mbbill/undotree",
+    config = function()
+      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+    end
+  },
+
+  -- misc
+  {
+    "laytan/cloak.nvim",
+    config = function()
+      require('cloak').setup({
+        enabled = true,
+        cloak_character = '*',
+        highlight_group = 'Comment',
+        cloak_length = nil,
+        patterns = {
+          {
+            file_pattern = '.env*',
+            cloak_pattern = { '=.+', ':.+', '-.+' }
+          },
+        },
+      })
+    end
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {},
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "auto",
+          component_separators = { left = ">", right = "<" },
+        },
+        sections = {
+          lualine_c = { "filename" },
+        },
+      })
+    end
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      require("todo-comments").setup {}
+
+      vim.keymap.set("n", "<leader>tc", ":TodoTelescope<CR>")
+    end
+  },
+
+  { 'echasnovski/mini.nvim', version = '*' },
 }
