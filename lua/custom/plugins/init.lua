@@ -308,4 +308,6 @@ return {
   },
 
   { 'echasnovski/mini.nvim', version = '*' },
+
+  { "folke/twilight.nvim" },
 }
