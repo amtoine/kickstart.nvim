@@ -306,7 +306,5 @@ return {
 
   { 'echasnovski/mini.nvim', version = '*' },
 
-  { "folke/twilight.nvim" },
-
   { "christoomey/vim-tmux-navigator" },
 }

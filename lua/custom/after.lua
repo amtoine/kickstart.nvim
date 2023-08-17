@@ -20,8 +20,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.cmd.colorscheme("minicyan")
 
-vim.cmd([[TwilightEnable]])
-
 vim.cmd([[
   " Tell Vim which characters to show for expanded TABs,
   " trailing whitespace, and end-of-lines. VERY useful!
