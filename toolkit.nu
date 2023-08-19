@@ -2,11 +2,9 @@ use std log
 
 def install-queries [] {
     let remote = "https://raw.githubusercontent.com/nushell/tree-sitter-nu/main/queries/"
-    let local = (
-        $env.XDG_DATA_HOME?
+    let local = $env.XDG_DATA_HOME?
         | default ($env.HOME | path join ".local" "state")
         | path join "nvim" "lazy" "nvim-treesitter" "queries" "nu"
-    )
 
     let file = "highlights.scm"
 
@@ -20,7 +18,7 @@ def install-queries [] {
 export def setup [] {
     install-queries
 
-    let NVIM_CONFIG = ("~/.config/nvim" | path expand --no-symlink)
+    let NVIM_CONFIG = "~/.config/nvim" | path expand --no-symlink
 
     if ($NVIM_CONFIG | path exists) {
         print $"'($NVIM_CONFIG)' already exists: aborting."
@@ -35,38 +33,30 @@ export def update [] {
     nvim -c ":TSUpdate"
 }
 
-# list the installed plugins
-export def plugins [] {
-    ls lua/custom/plugins/*lua
-    | find --invert init.lua
-    | get name
-    | path parse
-    | get stem
-}
-
 def pretty-cmd [] {
     let cmd = $in
     $"(ansi -e {fg: default attr: di})($cmd)(ansi reset)"
-
 }
 
 export def import-git-projects [] {
-    let projects = ($env.HOME | path join ".local/share/nvim/project_nvim/project_history")
+    let projects = $env.HOME | path join ".local/share/nvim/project_nvim/project_history"
 
     mkdir ($projects | path dirname)
     touch $projects
 
-    let before = ($projects | open | lines | length)
+    let before = $projects | open | lines | length
 
-    $projects | open | lines | append (
-        ghq list
+    $projects
+        | open
         | lines
-        | each {|it|
-            print $"adding (ansi yellow)($it)(ansi reset) to the projects..."
-            ghq root | str trim | path join $it
-        }
-    ) | uniq
-    | save -f $projects
+        | append (
+            ghq list | lines | each {|it|
+                print $"adding (ansi yellow)($it)(ansi reset) to the projects..."
+                ghq root | str trim | path join $it
+            }
+        )
+        | uniq
+        | save -f $projects
 
     print $"all ('git' | pretty-cmd) projects (ansi green_bold)successfully added(ansi reset) to the ('projects.nvim' | pretty-cmd) list!"
     print $"from ($before) to ($projects | open | lines | length) projects."
