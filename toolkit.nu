@@ -82,6 +82,5 @@ export def "install runtime" [
     sudo cp -r $runtime $env.VIMRUNTIME
     sudo chown -R $"($user):($group)" $env.VIMRUNTIME
 
-    let git_syntax_file = "https://raw.githubusercontent.com/amtoine/neovim/feature/branch-and-HEAD-colors-in-git-syntax/runtime/syntax/git.vim"
-    http get $git_syntax_file | save --force ($env.VIMRUNTIME | path join "syntax" "git.vim")
+    cp runtime/syntax/git.vim ($env.VIMRUNTIME | path join "syntax" "git.vim")
 }
