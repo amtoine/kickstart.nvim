@@ -88,11 +88,11 @@ return {
       local goto_preview = require('goto-preview')
       goto_preview.setup {}
 
-      vim.keymap.set("n", "gpd", function() goto_preview.goto_preview_definition() end, { silent = true, desc = "" })
-      vim.keymap.set("n", "gpt", function() goto_preview.goto_preview_type_definition() end, { silent = true, desc = "" })
-      vim.keymap.set("n", "gpi", function() goto_preview.goto_preview_implementation() end, { silent = true, desc = "" })
-      vim.keymap.set("n", "gP", function() goto_preview.close_all_win() end, { silent = true, desc = "" })
-      vim.keymap.set("n", "gpr", function() goto_preview.goto_preview_references() end, { silent = true, desc = "" })
+      vim.keymap.set("n", "<leader>gpd", function() goto_preview.goto_preview_definition() end, { silent = true, desc = "" })
+      vim.keymap.set("n", "<leader>gpt", function() goto_preview.goto_preview_type_definition() end, { silent = true, desc = "" })
+      vim.keymap.set("n", "<leader>gpi", function() goto_preview.goto_preview_implementation() end, { silent = true, desc = "" })
+      vim.keymap.set("n", "<leader>gP", function() goto_preview.close_all_win() end, { silent = true, desc = "" })
+      vim.keymap.set("n", "<leader>gpr", function() goto_preview.goto_preview_references() end, { silent = true, desc = "" })
     end
   },
 
@@ -121,7 +121,7 @@ return {
       vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
         { silent = true, noremap = true }
       )
-      vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+      vim.keymap.set("n", "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",
         { silent = true, noremap = true }
       )
     end
