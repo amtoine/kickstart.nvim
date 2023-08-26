@@ -21,7 +21,7 @@ vim.opt.hlsearch = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.shell = "nu"
+vim.opt.shell = "/bin/bash"
 
 vim.filetype.add({
     extension = {
