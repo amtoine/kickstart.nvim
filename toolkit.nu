@@ -1,17 +1,24 @@
 use std log
 
 def install-queries [] {
+    if "VIMRUNTIME" not-in $env {
+        error make --unspanned {
+            msg: $"(ansi red_bold)VIMRUNTIME not set(ansi reset)
+            in order to install Neovim queries safely, please set the `$env.VIMRUNTIME` environment variable and run `toolkit install runtime`"
+        }
+    }
+
+    let local = $env.VIMRUNTIME | path join "lazy" "nvim-treesitter" "queries" "nu"
     let remote = "https://raw.githubusercontent.com/nushell/tree-sitter-nu/main/queries/"
-    let local = $env.XDG_DATA_HOME?
-        | default ($env.HOME | path join ".local" "state")
-        | path join "nvim" "lazy" "nvim-treesitter" "queries" "nu"
 
     let file = "highlights.scm"
 
     mkdir $local
+
+    log info $"pulling query files from ($remote)"
     http get ([$remote $file] | str join "/") | save --force ($local | path join $file)
 
-    print $"($file) pulled."
+    log info $"queries successfully pulled down and stored in ($file)"
 }
 
 # create a symlink between the current directory and the config
