@@ -69,3 +69,7 @@ vim.keymap.set("n", "<leader>wH", "<C-w>H", { silent = true, desc = "Move [w]ind
 vim.keymap.set("n", "<leader>wJ", "<C-w>J", { silent = true, desc = "Move [w]indow down" })
 vim.keymap.set("n", "<leader>wK", "<C-w>K", { silent = true, desc = "Move [w]indow up" })
 vim.keymap.set("n", "<leader>wL", "<C-w>L", { silent = true, desc = "Move [w]indow to the right" })
+
+if vim.lsp.inlay_hint then
+    vim.keymap.set('n', '<leader>lih', function() vim.lsp.inlay_hint(0, nil) end, { desc = 'Toggle Inlay Hints' })
+end
