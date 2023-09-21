@@ -8,7 +8,7 @@ def install-queries [] {
         }
     }
 
-    let local = $env.VIMRUNTIME | path join "lazy" "nvim-treesitter" "queries" "nu"
+    let local = $env.VIMRUNTIME | path dirname | path join "lazy" "nvim-treesitter" "queries" "nu"
     let remote = "https://raw.githubusercontent.com/nushell/tree-sitter-nu/main/queries/"
 
     let file = "highlights.scm"
