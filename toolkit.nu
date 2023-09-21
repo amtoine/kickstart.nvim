@@ -35,11 +35,6 @@ export def setup [] {
     ln -s (pwd) $NVIM_CONFIG
 }
 
-export def update [] {
-    install-queries
-    nvim -c ":TSUpdate"
-}
-
 def pretty-cmd [] {
     let cmd = $in
     $"(ansi -e {fg: default attr: di})($cmd)(ansi reset)"
@@ -107,4 +102,16 @@ export def "install runtime" [
 
     log info $"copying custom Git syntax"
     cp runtime/syntax/git.vim ($env.VIMRUNTIME | path join "syntax" "git.vim")
+}
+
+export def update [] {
+    install-queries
+    nvim -c ":TSUpdate"
+}
+
+export def upgrade [source: path] {
+    cd $source
+    git pull
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
 }
