@@ -106,7 +106,7 @@ export def "install runtime" [
 
 export def update [] {
     install-queries
-    nvim -c ":TSUpdate"
+    nvim -c ":TSInstall nu | TSUpdate"
 }
 
 export def upgrade [source: path] {
