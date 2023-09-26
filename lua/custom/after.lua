@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     command = "startinsert",
 })
 
-vim.cmd.colorscheme("minicyan")
+vim.cmd.colorscheme("base16-default-dark")
 
 vim.cmd([[
   " Tell Vim which characters to show for expanded TABs,
