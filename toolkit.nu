@@ -68,7 +68,7 @@ export def "install runtime" [
     --runtime: string = "/usr/share/nvim/runtime/"
     --user: string
     --group: string
-    --verbose: bool
+    --verbose
 ] {
     if $env.VIMRUNTIME? == null {
         error make --unspanned { msg: "Please set VIMRUNTIME before running this command." }
