@@ -490,6 +490,7 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   rust_analyzer = {},
+  nil_ls = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
