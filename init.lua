@@ -403,17 +403,6 @@ vim.defer_fn(function()
   }
 end, 0)
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_config.nu = {
-  install_info = {
-    url = "https://github.com/nushell/tree-sitter-nu",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-  filetype = "nu",
-}
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
