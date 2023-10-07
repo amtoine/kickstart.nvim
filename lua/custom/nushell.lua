@@ -26,3 +26,14 @@ parser_config.nu = {
   },
   filetype = "nu",
 }
+
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
+configs.nuls = {
+    default_config = {
+        cmd = { "nu-lsp" },
+        filetypes = { "nu" },
+        root_dir = function(fname) return lspconfig.util.find_git_ancestor(fname) end,
+    },
+}
+lspconfig.nuls.setup({ capabilities = capabilities, on_attach = on_attach, on_init = on_init })
