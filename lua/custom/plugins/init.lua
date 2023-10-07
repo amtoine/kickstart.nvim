@@ -249,4 +249,6 @@ return {
   { "folke/twilight.nvim" },
 
   { "christoomey/vim-tmux-navigator" },
+
+  { "nvim-neorg/neorg" },
 }
