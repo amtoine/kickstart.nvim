@@ -82,7 +82,14 @@ configs.nuls = {
     default_config = {
         cmd = { "nu-lsp" },
         filetypes = { "nu" },
-        root_dir = function(fname) return lspconfig.util.find_git_ancestor(fname) end,
+        root_dir = function(fname)
+            local git_root = lspconfig.util.find_git_ancestor(fname)
+            if git_root then
+                return git_root
+            else
+                return vim.fn.fnamemodify(fname, ":p:h")  -- get the parent directory of the file
+            end
+        end
     },
 }
 lspconfig.nuls.setup({ capabilities = capabilities, on_attach = on_attach, on_init = on_init })
