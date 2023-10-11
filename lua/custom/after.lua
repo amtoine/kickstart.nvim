@@ -1,3 +1,13 @@
+-- return true if the `value` is inside the `list`, false otherwise
+local is_in = function(value, list)
+    for _, item in ipairs(list) do
+        if value == item then
+            return true
+        end
+    end
+    return false
+end
+
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
     command = "startinsert",
@@ -17,12 +27,12 @@ vim.cmd([[
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
     pattern = "*",
     callback = function ()
-        if vim.bo.filetype == "" or
-           vim.bo.filetype == "aerial" or
-           vim.bo.filetype == "help" or
-           vim.bo.filetype == "neo-tree"
-        then
-            return nil
+        local extra_whitespaces = ""
+
+        if is_in(vim.bo.filetype, {"", "aerial", "help", "neo-tree"}) then
+            extra_whitespaces = "//"
+        else
+            extra_whitespaces = "/\\s\\+$\\|\\t/"
         end
 
         local color = "darkred"
@@ -36,9 +46,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
             },
             bang = false,
         }
+
         vim.cmd {
             cmd = "match",
-            args = {"ExtraWhitespace" , "/\\s\\+$\\|\\t/"},
+            args = {"ExtraWhitespace" , extra_whitespaces},
             bang = false,
         }
     end
