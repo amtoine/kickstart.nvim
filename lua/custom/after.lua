@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
     callback = function ()
         local extra_whitespaces = ""
 
-        if is_in(vim.bo.filetype, {"", "aerial", "help", "neo-tree"}) then
+        if is_in(vim.bo.filetype, {"", "aerial", "help", "presenting_markdown", "neo-tree"}) then
             extra_whitespaces = "//"
         else
             extra_whitespaces = "/\\s\\+$\\|\\t/"
