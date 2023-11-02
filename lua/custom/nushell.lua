@@ -78,7 +78,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
-configs.nuls = {
+configs.nulsp = {
     default_config = {
         cmd = { "nu-lsp" },
         filetypes = { "nu" },
@@ -92,4 +92,4 @@ configs.nuls = {
         end
     },
 }
-lspconfig.nuls.setup({ capabilities = capabilities, on_attach = on_attach, on_init = on_init })
+lspconfig.nulsp.setup({ capabilities = capabilities, on_attach = on_attach, on_init = on_init })
