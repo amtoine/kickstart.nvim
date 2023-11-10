@@ -3,6 +3,7 @@ vim.filetype.add({
         nu = "nu",
         nush = "nu",
         nuon = "nu",
+        nushell = "nu",
     },
     pattern = {
         [".*"] = {
