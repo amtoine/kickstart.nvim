@@ -18,6 +18,10 @@ return {
         separator = "-",
         zindex = 20,
       }
+      vim.keymap.set("n", "<leader>ct", ":TSContextToggle<CR>", { silent = true, desc = "Toggle the context" })
+      vim.keymap.set("n", "<leader>cu", function()
+        require("treesitter-context").go_to_context()
+      end, { silent = true, desc = "Go up in the context" })
     end
   },
 
