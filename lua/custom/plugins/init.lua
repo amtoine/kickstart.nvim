@@ -133,6 +133,21 @@ return {
       vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
     end
   },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    config = function()
+      local neogit = require('neogit')
+      neogit.setup({})
+
+      vim.keymap.set("n", "<leader>gg", neogit.open, { silent = true, desc = "" })
+    end
+  },
 
   {
     'lewis6991/gitsigns.nvim',
