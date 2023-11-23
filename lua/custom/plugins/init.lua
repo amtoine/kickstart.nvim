@@ -243,12 +243,7 @@ return {
     end
   },
 
-  { 'echasnovski/mini.nvim', version = '*' },
-  { "chriskempson/base16-vim" },
-
   { "folke/twilight.nvim" },
 
   { "christoomey/vim-tmux-navigator" },
-
-  { "sotte/presenting.vim" },
 }
