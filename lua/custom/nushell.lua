@@ -7,9 +7,9 @@ vim.filetype.add({
     },
     pattern = {
         [".*"] = {
-            function(path, bufnr)
+            function(_, bufnr)
                 local content = vim.filetype.getlines(bufnr, 1)
-                if vim.filetype.matchregex(content, [[^#!/usr/bin/env nu]]) then
+                if vim.filetype.matchregex(content, [[^#!/usr/bin/env (-S )?nu( --stdin)?]]) then
                     return "nu"
                 end
             end,
