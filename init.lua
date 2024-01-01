@@ -626,7 +626,18 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
-require'lspconfig'.nushell.setup{
+local lspconfig = require'lspconfig'
+lspconfig.nushell.setup{
+  cmd = { "nu", "--lsp" },
+  filetypes = { "nu" },
+  root_dir = function(fname)
+      local git_root = lspconfig.util.find_git_ancestor(fname)
+      if git_root then
+          return git_root
+      else
+          return vim.fn.fnamemodify(fname, ":p:h")  -- get the parent directory of the file
+      end
+  end,
   capabilities = capabilities,
   on_attach = on_attach,
 }
