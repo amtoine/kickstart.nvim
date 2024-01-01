@@ -626,6 +626,11 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+require'lspconfig'.nushell.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
