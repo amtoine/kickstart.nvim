@@ -241,4 +241,6 @@ return {
   { "christoomey/vim-tmux-navigator" },
 
   { "rebelot/kanagawa.nvim" },
+
+  { "KilianVounckx/nvim-tetris", commit = "3a791b74bbee29e2e4452d2776415de4f3f3e08b" },
 }
