@@ -1,25 +1,18 @@
+#!/usr/bin/env nu
 use std log
 
-# create a symlink between the current directory and the config
-export def setup [] {
-    install-queries
-
-    let NVIM_CONFIG = "~/.config/nvim" | path expand --no-symlink
-
-    if ($NVIM_CONFIG | path exists) {
-        print $"'($NVIM_CONFIG)' already exists: aborting."
-        return
-    }
-
-    ln -s (pwd) $NVIM_CONFIG
-}
-
-export def "install runtime" [
+export def main [
     --runtime: string = "/usr/share/nvim/runtime/"
-    --user: string
-    --group: string
     --verbose
 ] {
+    let NVIM_CONFIG = "~/.config/nvim" | path expand --no-symlink
+    if not ($NVIM_CONFIG | path exists) {
+        log info $"aliasing `(pwd)` to `($NVIM_CONFIG)`"
+        ln --symbolic (pwd) $NVIM_CONFIG
+    } else {
+        log warning $"'($NVIM_CONFIG)' already exists: skipping."
+    }
+
     if $env.VIMRUNTIME? == null {
         error make --unspanned { msg: "Please set VIMRUNTIME before running this command." }
     }
@@ -30,23 +23,19 @@ export def "install runtime" [
             msg: $"(ansi red_bold)directory_not_found(ansi reset)"
             label: {
                 text: "no such directory"
-                start: $span.start
-                end: $span.end
+                span: (metadata $runtime).span
             }
         }
     }
 
-    let user = $user | default $env.USER
-    let group = $group | default $env.USER
-
-    log info $"copying runtime from ($runtime) to ($env.VIMRUNTIME)"
+    log info $"copying runtime from `($runtime)` to `($env.VIMRUNTIME)`"
     if $verbose {
         sudo cp -rv $runtime $env.VIMRUNTIME
     } else {
         sudo cp -r $runtime $env.VIMRUNTIME
     }
 
-    let owner = $"($user):($group)"
+    let owner = $"($env.USER):($env.USER)"
     log info $"changing owner of ($env.VIMRUNTIME) to ($owner)"
     sudo chown -R $owner $env.VIMRUNTIME
 
