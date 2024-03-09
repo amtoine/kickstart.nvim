@@ -1,26 +1,5 @@
 use std log
 
-def install-queries [] {
-    if "VIMRUNTIME" not-in $env {
-        error make --unspanned {
-            msg: $"(ansi red_bold)VIMRUNTIME not set(ansi reset)
-            in order to install Neovim queries safely, please set the `$env.VIMRUNTIME` environment variable and run `toolkit install runtime`"
-        }
-    }
-
-    let local = $env.VIMRUNTIME | path dirname | path join "lazy" "nvim-treesitter" "queries" "nu"
-    let remote = "https://raw.githubusercontent.com/nushell/tree-sitter-nu/main/queries/nu"
-
-    let file = "highlights.scm"
-
-    mkdir $local
-
-    log info $"pulling query files from ($remote)"
-    http get ([$remote $file] | str join "/") | save --force ($local | path join $file)
-
-    log info $"queries successfully pulled down and stored in ($file)"
-}
-
 # create a symlink between the current directory and the config
 export def setup [] {
     install-queries
@@ -33,35 +12,6 @@ export def setup [] {
     }
 
     ln -s (pwd) $NVIM_CONFIG
-}
-
-def pretty-cmd [] {
-    let cmd = $in
-    $"(ansi -e {fg: default attr: di})($cmd)(ansi reset)"
-}
-
-export def import-git-projects [] {
-    let projects = $env.HOME | path join ".local/share/nvim/project_nvim/project_history"
-
-    mkdir ($projects | path dirname)
-    touch $projects
-
-    let before = $projects | open | lines | length
-
-    $projects
-        | open
-        | lines
-        | append (
-            ghq list | lines | each {|it|
-                print $"adding (ansi yellow)($it)(ansi reset) to the projects..."
-                ghq root | str trim | path join $it
-            }
-        )
-        | uniq
-        | save -f $projects
-
-    print $"all ('git' | pretty-cmd) projects (ansi green_bold)successfully added(ansi reset) to the ('projects.nvim' | pretty-cmd) list!"
-    print $"from ($before) to ($projects | open | lines | length) projects."
 }
 
 export def "install runtime" [
@@ -102,16 +52,4 @@ export def "install runtime" [
 
     log info $"copying custom Git syntax"
     cp runtime/syntax/git.vim ($env.VIMRUNTIME | path join "syntax" "git.vim")
-}
-
-export def update [] {
-    install-queries
-    nvim -c ":TSInstall nu | TSUpdate"
-}
-
-export def upgrade [source: path] {
-    cd $source
-    git pull
-    make CMAKE_BUILD_TYPE=Release
-    sudo make install
 }
