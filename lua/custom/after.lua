@@ -54,5 +54,3 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
         }
     end
 })
-
-pcall(require, 'custom/nushell')
