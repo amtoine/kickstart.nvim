@@ -574,6 +574,9 @@ require('which-key').register({
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+local lspconfig = require('lspconfig')
+lspconfig.nushell.setup {}
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -625,22 +628,6 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
-}
-
-local lspconfig = require'lspconfig'
-lspconfig.nushell.setup{
-  cmd = { "nu", "--lsp" },
-  filetypes = { "nu" },
-  root_dir = function(fname)
-      local git_root = lspconfig.util.find_git_ancestor(fname)
-      if git_root then
-          return git_root
-      else
-          return vim.fn.fnamemodify(fname, ":p:h")  -- get the parent directory of the file
-      end
-  end,
-  capabilities = capabilities,
-  on_attach = on_attach,
 }
 
 -- [[ Configure nvim-cmp ]]
