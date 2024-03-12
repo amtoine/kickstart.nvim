@@ -577,6 +577,12 @@ require('mason-lspconfig').setup()
 local lspconfig = require('lspconfig')
 lspconfig.nushell.setup {}
 
+vim.filetype.add({
+  extension = {
+      nuon = "nu",
+  }
+})
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
